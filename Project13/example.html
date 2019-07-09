@@ -8,10 +8,15 @@
 </head>
 <body>
     <svg xmls="http://www.w3.org/2000/svg" version ="1.1" width="1000" height="1000" >
-        <circle cx="60" cy ="60" r="50" stroke="black"
-        stroke-width="3" fill="red" ></circle>
         
-         <ellipse cx="200" cy="200" rx="100" ry="50" style="fill:blue; 
+        <circle r="100" cx="200" cy="110" fill="slategrey" stroke="#000"  stroke-width="7" >
+
+            <animate attributeName="r" from ="0" to="100" dur="3s"></animate>
+            <animate attributeName="cx" from ="100" to="200" dur="3s"></animate>
+
+        </circle>
+        
+         <ellipse cx="300" cy="300" rx="100" ry="50" style="fill:blue; 
          stroke : black; stroke-width:2;" />
        
          <rect x =10 y =400  width="100" height="100"stroke="black">
