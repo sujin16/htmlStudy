@@ -25,7 +25,7 @@
         }
         function handleDragStart(e){
             e.dataTransfer.effectAllowed ='move';
-            e.dataTransfer.setData("Text".e.target.id);
+            e.dataTransfer.setData("Text",e.target.id);
         }
         function handleDrop(e){
             e.preventDefault();
