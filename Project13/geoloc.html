@@ -10,20 +10,20 @@
      <button onclick="getGeolocation()">Get Geolocation</button>
      <div id="target"></div>
     
-    
-    <script>
-        myDiv = document.getElementById("target");
-        function getGeolocation(){
-            if(vanigator.geolocation){
-                navigator.geolocation.getCurrentPosition(showLocation);
-            }
-            function showLocation(location){
-                myDiv.innerHTML = "(위도"+location.coords.latitude+
-                ",경도"+location.coords.longitude+")";
-            }
-        }
-    
-    </script>
    
+    
+     <script>
+            myDiv = document.getElementById("target");
+            function getGeolocation(){
+                if(vanigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(showLocation);
+                }
+                function showLocation(location){
+                    myDiv.innerHTML = "(위도"+location.coords.latitude+
+                    ",경도"+location.coords.longitude+")";
+                }
+            }
+        
+        </script>
 </body>
 </html>
