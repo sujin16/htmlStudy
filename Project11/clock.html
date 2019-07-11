@@ -1,0 +1,101 @@
+﻿<!--<%@ page language="java"
+     contentType="text/html;
+          charset=EUC-KR"
+    pageEncoding="EUC-KR"%>-->
+
+<html>
+<head>
+    <title>
+        Insert title here
+    </title>
+</head>
+<body>
+
+    <center>
+        <canvas id="canvas"
+                width="800"
+                height="800"></canvas>
+    </center>
+
+    <script>
+        var context = document.getElementById("canvas").getContext("2d");
+        var radius = document.getElementById("canvas").width / 2;
+
+        setInterval(function (context, radius) {
+            makeClockTool(this.context, this.radius);
+            makeNumberTool(this.context, this.radius);
+            makeArrowTool(this.context, this.radius);
+        }, 1000);
+
+        // 1. 시계 틀 만들기
+        function makeClockTool(context, radius) {
+            context.beginPath();
+            context.arc(radius, radius, radius, 0, Math.PI * 2);
+            context.fillStyle = "black";
+            context.fill();
+            context.stroke();
+
+            context.beginPath();
+            context.arc(radius, radius, 10, 0, Math.PI * 2);
+            context.fillStyle = "white";
+            context.fill();
+            context.stroke();
+        }
+
+        // 2. 숫자 집어넣기
+        function makeNumberTool(context, radius) {
+            context.font = 50 + "px Arial";
+            for (var i = 0; i < 12; i++) {
+                var x = 350 * Math.cos(Math.PI * (30 * i) / 180) + radius - 20;
+                var y = 350 * Math.sin(Math.PI * (30 * i) / 180) + radius + 20;
+                var number = 0;
+                if (i <= 9) {
+                    number = i + 3;
+                } else {
+                    number = i - 9;
+                }
+                context.fillText(number.toString(), x, y);
+            }
+        }
+
+        // 3. 시 분 초 침 만들기
+        function makeArrowTool(context, radius) {
+            var now = new Date();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
+
+            // 초
+            context.beginPath();
+            context.moveTo(radius, radius);
+            context.lineTo(350 * Math.cos(Math.PI * ((second * 6) - 90) / 180) + radius,
+                350 * Math.sin(Math.PI * ((second * 6) - 90) / 180) + radius);
+            context.lineWidth = 1;
+            context.strokeStyle = "white";
+            context.stroke();
+
+            // 분
+            context.beginPath();
+            context.moveTo(radius, radius);
+            context.lineTo(300 * Math.cos(Math.PI * (((minute * 6) - 90) + (second * (6 / 60))) / 180) + radius,
+                300 * Math.sin(Math.PI * (((minute * 6) - 90) + (second * (6 / 60))) / 180) + radius);
+            context.lineWidth = 3;
+            context.strokeStyle = "white";
+            context.stroke();
+
+            // 시
+            context.beginPath();
+            context.moveTo(radius, radius);
+            context.lineTo(200 * Math.cos(Math.PI * (((hour * 30) - 90) + (second * (6 / 60 / 60))) / 180) + radius,
+                200 * Math.sin(Math.PI * (((hour * 30) - 90) + (second * (6 / 60 / 60))) / 180) + radius);
+            context.lineWidth = 6;
+            context.strokeStyle = "white";
+            context.stroke();
+        }
+
+    </script>
+
+</body>
+</html>
+
+

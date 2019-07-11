@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>REGISTER</title>
+    <style>
+        body{ height:100%; background-color:#F3F1E9;}
+        label{display:inline-block; width:120px;}
+        input{display:inline-block; width:160px;}
+    </style>
+
+    <script>
+        function checkID() {
+            var str = document.getElementById("id");
+            var img = document.getElementById("msg_id");
+            if (str.value.length >= 10 && str.value.length <= 5) {
+                img.innerHTML = "ID lenght is 6";
+                str.focus();
+                return false;
+            } else {
+                return;
+            }
+        }
+        function checkPW() {
+            var str = document.getElementById("pw");
+            var img = document.getElementById("msg_pw");
+            if (str.value.length >= 10 && str.value.length <= 5) {
+                img.innerHTML = "PW lenght is 6";
+                str.focus();
+                return false;
+            } else {
+                return;
+            }
+        }
+
+        function checkPW2() {
+            var pw1 = document.getElementById("pw1").value;
+            var pw2 = document.getElementById("pw2").value;
+            var status = document.getElementById("msg_pw2");
+            if (pw1 == pw2) {
+                return true;
+            } else {
+                status.innerHTML = "no match password";
+                pw.focus();
+            }            
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="page-wrap">
+        <form method="post" action="#">
+            <fieldset>
+                <legend>Profile</legend>
+                <label for="name">ID</label>
+                <input type="text" id="id" onkeydown="checkID()"/><em id="msg_id"></em><br/>           
+
+                <label for="password1">PW</label>
+                <input type="password" id="pw1" onkeydown="checkPW()"/><em id="msg_pw"></em><br/>
+                <label for="password2">CHECK PW</label>
+                <input type="password" id="pw2"onkeydown="checkPW2()"/><em id="msg_pw2"></em><br/>
+
+                <label for="name">NAME</label>
+                <input type="text" id="name"/><br />
+                <label for="number">TEL-NUMBER</label>
+                <input type="tel" id="tel"/><br />
+                <label for="email">E-MAIL</label>
+                <input type="email" id="email"/><br />                
+                 <input type="url" id="url"/><br />
+                
+                FEMALE<input type="radio" name="gender" value="female" />
+                MALE<input type="radio" name="gender" value="male" /><br /><br />
+
+                <input type="submit" name="submit" value="submit" />
+                <input type="reset" name="reset" value="reset" />
+
+
+
+            </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>

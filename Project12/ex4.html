@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    
+    <script>        
+        $(document).ready(function(){
+               
+
+           $("#btn").click(function () {
+               $("#box1").css({border: '0px solid green'}).animate({
+                width: "30%", opacity: 0.4, borderWidth: 10, fontSize: "3em"}, 1500);               
+               
+           }); 
+
+         
+
+        });
+    </script>
+    <style>
+         
+       #box1{
+        background-color:#bca; 
+        width:90px;
+        height: 60px;
+        
+       }
+
+   
+
+    </style>
+</head>
+<body>
+    
+    <button id="btn"> >>Run </button> 
+
+    <div id="box1">Hello!</div>
+    
+   
+</body>
+</html>

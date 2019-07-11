@@ -1,0 +1,15 @@
+﻿h1,h2 {
+    color: white;
+    background-color: darkgreen;
+    border: 3px solid darkgreen;
+    text-align :center;
+    
+}
+ul{ list-style:none; text-align:center; border: 3px solid darkgreen; padding:5px;}
+ul li{ display:inline; text-transform:uppercase; padding:0 40px; letter-spacing:10px;}
+ul li a{text-decoration:none; color:black;}
+ul li a:hover{text-decoration:underline; }
+ul li a:active{text-decoration:underline;}
+
+
+body{ background-color:white;}

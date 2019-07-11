@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    
+    <script>        
+        $(document).ready(function(){
+           $("#left").click(function () {
+               $("#box").animate({'marginLeft' : "-=30px" });               
+           });
+           $("#right").click(function () {
+               $("#box").animate({'marginLeft' : "+=30px" });               
+           });
+           
+
+        });
+    </script>
+    <style>
+        #box{
+            width: 50px;
+            height: 50px;
+            background-color: aqua;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    
+    <button id="left"> << </button>
+    <button id="right"> >> </button><br/><br/>
+    
+    <div id="box"></div>
+   
+</body>
+</html>
