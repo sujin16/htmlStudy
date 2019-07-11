@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
+    <script>
+        var ws;
+        function open(){
+            if("WebSocket" in window){
+                ws =new WebSocket("ws://echo.websocket.org");
+                ws.onopen =function(){
+                    alert("Success web socket");          
+                };
+                ws.onmessage =function(e){
+                    var msg =e.data;
+                    document.getElementById("result").innerHTML =msg;
+          
+                };
+                ws.close =function(){
+                    alert("terminate web socket");
+                };
+            }else{
+                alert("Not Support web socket");
+            }
+        }
+        function send(){
+            ws.send(document.getElementById("data").value);
+        }
+        function quit(){
+            ws.close();
+        }
+    </script>
 </head>
 <body>
     <button onclick="open()">connect web socket </button>
