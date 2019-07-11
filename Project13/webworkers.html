@@ -8,23 +8,27 @@
     <script>
         var w;
         function startWorker(){
-            if(typeof(Worker)!="undefined"){
-                if(typeof(w)!="undefined"){
-                    w.onmessage =function (e){
-                        document.getElementById("targey").innerHTML=e.data;
-                    }
+            if(typeof(Worker)!=="undefined"){
+                if(typeof(w)=="undefined"){
+                    w =new Worker("workers.js");                    
                 }else{
-                    w =new Worker("workers.js");
+                    w.onmessage =function (e){
+                        document.getElementById("result").innerHTML=e.data;
+                    };
                 }
             }else{
-                document.getElementById("target").innerHTML ="Web browser가 web worker를 지원하지 않는다."
+                document.getElementById("result").innerHTML ="Web browser가 web worker를 지원하지 않는다."
             }
+        }
+        function stopWorker(){
+            w.terminate();
         }
     
     
     </script>
 </head>
 <body>
+    
     <button onclick="startWorker()">startWorker</button>
     <button onclick="stopWorker()">stopWorker</button>
     <p>현재까지 발견된 가장 큰 소수는 <output id="result"></output></p>
