@@ -8,11 +8,16 @@
     
     <script>
         function readFile(){
-            if(!window.File || window.FileReader){
+            if(!window.File || !window.FileReader){
                 alert('File api가 제공되지 않습니다');
                 return;
             }
-            var file =document.getElementById("input").files;
+            var files =document.getElementById("input").files;
+            if(!files.length){
+                alert('Select file');
+                return;
+            }
+            var file = files[0];
             var reader = new FileReader();
             reader.onload =function(){
                 document.getElementById("result").value =reader.result;
@@ -25,7 +30,7 @@
 </head>
 <body>
     <input type="file" id="input" name="input">
-    <button id="readline" onclick="readFile()">readFile</button>><br/>
+    <button id="readline" onclick="readFile()"> readFile</button><br/>
     <textarea id="result" rows="6" cols="60"></textarea>
     
 </body>
