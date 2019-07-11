@@ -6,11 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <script>
+         function allowDrop(e){
+            e.preventDefault();
+        }
+        function handleDragStart(e){
+            e.dataTransfer.effectAllowed ='move';
+            e.dataTransfer.setData("Text",e.target.id);
+        }
+        function handleDrop(e){
+            e.preventDefault();
+            var src =e.dataTransfer.getData("Text");
+            e.target.appendChild(document.getElementById(src));
+        }
+    
+    
+    </script>
+
     <style>
             #box{
                 width: 450px;
                 height: 300px;
                 border: 2px solid black;            
+            }
+            #item{
+                background-color: blueviolet;
+                width: 20px;
+                height: 20px;
             }
         </style>
 
@@ -19,7 +41,7 @@
 
 <body>
     <div id="box" ondrop="handleDrop(e)" ondragover="allowDrop(e)"></div>
-    <p id="item"draggable="true" ondragstart="handleDragStart(e)" width="30px" height="30px">Drag me</p>
+    <p id="item"draggable="true" ondragstart="handleDragStart(e)">Drag me</p>
     
 </body>
 </html>
