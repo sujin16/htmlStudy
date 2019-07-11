@@ -10,12 +10,11 @@
      <button onclick="getGeolocation()">Get Geolocation</button>
      <div id="target"></div>
     
-   
-    
+      
      <script>
             myDiv = document.getElementById("target");
             function getGeolocation(){
-                if(vanigator.geolocation){
+                if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(showLocation);
                 }
                 function showLocation(location){
