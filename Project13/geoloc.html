@@ -8,6 +8,7 @@
 </head>
 <body>
      <button onclick="getGeolocation()">Get Geolocation</button>
+     <button onclick="getGeolocationMap()">Get GeolocationMap</button>
      <div id="target"></div>
     
       
@@ -17,10 +18,26 @@
                 if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(showLocation);
                 }
-                function showLocation(location){
-                    myDiv.innerHTML = "(위도"+location.coords.latitude+
-                    ",경도"+location.coords.longitude+")";
+            }
+
+            function getGeolocationMap(){
+                if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(showGeolocation);
                 }
+            }  
+                
+            
+            function showLocation(location){
+                myDiv.innerHTML = "(위도"+location.coords.latitude+
+                  ",경도"+location.coords.longitude+")";
+                
+            }
+
+            function showGeolocation(location){
+                var pos = position.coords.latitude +","+position.coords.longitude;
+                var url = "http://maps.googleapis.com/maps/api/staticmap?center="+pos
+                +"&zoom=14&size=500x300&seasor=false";
+                window.open(url);
             }
         
         </script>
