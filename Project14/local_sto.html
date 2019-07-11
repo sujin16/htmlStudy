@@ -10,11 +10,11 @@
     <p>페이지 이동 횟수:<span id="count"></span></p>
 
     <script>
-        if(!localStorage.pageLoadCount){
+        if(!localStorage.pageLoadCount)
             localStorage.pageLoadCount=0;
         localStorage.pageLoadCount =parseInt(localStorage.pageLoadCount)+1;
         document.getElementById("count").innerHTML =localStorage.pageLoadCount;
-        }
+        
     
     </script>
 </body>
