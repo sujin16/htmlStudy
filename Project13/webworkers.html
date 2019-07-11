@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        var w;
+        function startWorker(){
+            if(typeof(Worker)!="undefined"){
+                if(typeof(w)!="undefined"){
+                    w.onmessage =function (e){
+                        document.getElementById("targey").innerHTML=e.data;
+                    }
+                }else{
+                    w =new Worker("workers.js");
+                }
+            }else{
+                document.getElementById("target").innerHTML ="Web browser가 web worker를 지원하지 않는다."
+            }
+        }
+    
+    
+    </script>
 </head>
 <body>
     <button onclick="startWorker()">startWorker</button>
