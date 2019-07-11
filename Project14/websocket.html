@@ -26,12 +26,15 @@
                 alert("Not Support web socket");
             }
         }
+        
         function send(){
             ws.send(document.getElementById("data").value);
         }
+
         function quit(){
             ws.close();
         }
+
     </script>
 </head>
 <body>
