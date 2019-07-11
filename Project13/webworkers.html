@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script>
-        var w;
-        function startWorker(){
-            if(typeof(Worker)!=="undefined"){
-                if(typeof(w)=="undefined"){
-                    w =new Worker("workers.js");                    
-                }else{
-                    w.onmessage =function (e){
-                        document.getElementById("result").innerHTML=e.data;
-                    };
-                }
-            }else{
-                document.getElementById("result").innerHTML ="Web browser가 web worker를 지원하지 않는다."
+  
+  <script>
+       var webworker;
+
+        function startWorker() {
+
+            if(typeof(Worker) !== "undefined") {
+
+                if(typeof(webworker) == "undefined") { webworker = new Worker("worker.js"); }
+
+                webworker.onmessage = function(event) { document.getElementById("result").innerHTML = event.data; }; 
+
             }
+
         }
-        function stopWorker(){
-            w.terminate();
+
+        function stopWorker() { 
+
+            webworker.terminate();
+
+            webworker = undefined;
+
         }
-    
     
     </script>
 </head>
