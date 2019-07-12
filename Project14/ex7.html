@@ -1,38 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title></title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js">
+   
 
-     
-    <script>
-            function readFile(){
-                if(!window.File || !window.FileReader){
-                    alert('File api가 제공되지 않습니다');
+        var sel_files =[];
+        $(document).ready(function(){
+            $("#input_imgs").on("change",handleImgFileSelect);
+
+        });
+        function fileUploadAction(){
+            console.log("fileUploadAction");
+            $("#input_imgs").trigger('click');
+        }
+        function handleImgFileSelect(e){
+            //이미지 정보 초기화
+            sel_files=[];
+            $(".img_wrap").empty();
+            var files =e.target.files;
+            var filesArr =Array.prototype.slice.call(files);
+
+            var index =0;
+            filesArr.forEach(function(f){
+                if(!f.type.match("image.*")){
+                    alert("확장자는이미지 확장자만 가능합니다.");
                     return;
                 }
-                var files =document.getElementById("input").files;
-                if(!files.length){
-                    alert('Select file');
-                    return;
+                sel_files.push(f);
+
+                var reader =new FileReader();
+                reader.onload =function(e){
+                    var html ="<a href =\"javascript:void(0);\"onclick=\"deleteImageAction("+index
+                    +")\" id =\"img_id_"+index+"\"><img src=\""+e.target.result+"\"data-file='"
+                    +f.name+"' class ='selectProductFile' title='Click to remove'></a>";
+                    $(".img_wrap").append(html);
+                    index++;
                 }
-                var file = files[0];
-                var reader = new FileReader();
-                reader.onload =function(){
-                    document.getElementById("result").value =reader.result;
-                };
-                reader.readAsText(file,"euc-kr");
-            }
-    
-        
-        </script>
+                reader.readAsDataURL(f);
+
+            });
+        }
+
+    </script>
 </head>
 <body>
-        <input type="file" id="input" name="input">
-        <button id="readline" onclick="readFile()"> readFile</button><br/>
-        <textarea id="result" rows="6" cols="60"></textarea>
-        
+    <div>
+        <h2><b>이미지 미리보기</b></h2>
+        <div class="input_wrap">
+            <a href="javascript:" onclick="fileUploadAction();" class="my_button">file upload </a>
+            <input type="file" id="input_imgs" multiple>
+
+        </div>
+    </div>
+    <div>
+        <div class="img_wrap">
+            <img id="img"/>
+        </div>
+    </div>
+    <a href="javascript:" class="my_button" onclick="submitAction();">upload</a>
 </body>
 </html>
+
+
+<!-- https://greatps1215.tistory.com/5 -->
