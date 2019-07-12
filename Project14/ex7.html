@@ -5,8 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+     
+    <script>
+            function readFile(){
+                if(!window.File || !window.FileReader){
+                    alert('File api가 제공되지 않습니다');
+                    return;
+                }
+                var files =document.getElementById("input").files;
+                if(!files.length){
+                    alert('Select file');
+                    return;
+                }
+                var file = files[0];
+                var reader = new FileReader();
+                reader.onload =function(){
+                    document.getElementById("result").value =reader.result;
+                };
+                reader.readAsText(file,"euc-kr");
+            }
+    
+        
+        </script>
 </head>
 <body>
-    
+        <input type="file" id="input" name="input">
+        <button id="readline" onclick="readFile()"> readFile</button><br/>
+        <textarea id="result" rows="6" cols="60"></textarea>
+        
 </body>
 </html>
