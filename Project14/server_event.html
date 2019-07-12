@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script>
+        window.onload = function(){
+            if(typeof(EventSource)!="undefined"){
+                var source = new EventSource("test.jsp");
+                source.onmessage =function(e){
+                    document.getElementById("result").innerHTML +=e.data +"<br>";
+
+                };
+            }else{
+                alert("not support")
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>server전송 event</h1>
