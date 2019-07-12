@@ -7,46 +7,49 @@
     <title>Document</title>
 </head>
 <body> 
-
+    <p id="support"></p>
     <input id="local" type="text">
     <button id="Save_localBtn" onclick="localCounter()">Save local Stage</button><br/>
-    <input id="localText" type="text">
-    <button id="Reference_localBtn" onclick="localReference()">Reference local</button><br/><br/>
+    <output id="localText"></output>
+    <button onclick="localReference()">Reference local</button><br/><br/>
 
 
     <input id="session" type="text">
-    <button id="Save_sessionBtn" onclick="localCounter()">Save session Stage</button><br/>
-    <input id="sessionText" type="text">
-    <button id="Reference_sessionBtn" onclick="localReference()">Reference  session</button><br/>
+    <button id="Save_sessionBtn" onclick="sessionCounter()">Save session Stage</button><br/>
+    <output id="sessionText"></output>
+    <button onclick="sessionReference()">Reference session</button><br/>
 
-
-
-    <p>페이지 이동 횟수:<span id="countPage"></span></p>
-   
-    <p>
-        <button onclick="incrementCounter()" >click button</button>
-    </p>
-    
-    <div>버튼 클릭수 :<span id="countBtn"></span></div>
 
     <script>
-        if(!localStorage.pageLoadCount)
-            localStorage.pageLoadCount=0;
-        localStorage.pageLoadCount =parseInt(localStorage.pageLoadCount)+1;
-        document.getElementById("countPage").innerHTML =localStorage.pageLoadCount;
-
-        function incrementCounter(){
-            if(('localStorage' in window) &&(window['localStorage']!=null)){
-                if(localStorage.count){
-                    localStorage.count++;
-                }else{
-                    localStorage.count=1;
-                }
-                document.getElementById("countBtn").innerHTML =localStorage.count;
+        function localCounter(){
+            if(('localStorage' in window) &&(window['localStorage']!==null)){
+                 localStorage.setItem("text",document.getElementById("local").value);
+                                
             }else{
-                document.getElementById("countBtn").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다."
+                document.getElementById("support").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다.";
             }
         }
+        function localReference(){
+            document.getElementById("localText").innerHTML =
+            localStorage.getItem("text");
+
+        }
+
+
+        function sessionCounter(){
+            if(('sessionStorage' in window) &&(window['sessionStorage']!==null)){
+                sessionStorage.setItem("text",document.getElementById("session").value);
+                                
+            }else{
+                document.getElementById("support").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다.";
+            }
+        }
+        function sessionReference(){
+            document.getElementById("sessionText").innerHTML =
+            sessionStorage.getItem("text");
+
+        }
+
         
     
     </script>
