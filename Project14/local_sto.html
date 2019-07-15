@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <p>페이지 이동 횟수:<span id="countPage"></span></p>
+   
+    <p>
+        <button onclick="incrementCounter()" >click button</button>
+    </p>
+    
+    <div>버튼 클릭수 :<span id="countBtn"></span></div>
+
+    <script>
+        if(!localStorage.pageLoadCount)
+            localStorage.pageLoadCount=0;
+        localStorage.pageLoadCount =parseInt(localStorage.pageLoadCount)+1;
+        document.getElementById("countPage").innerHTML =localStorage.pageLoadCount;
+
+        function incrementCounter(){
+            if(('localStorage' in window) &&(window['localStorage']!=null)){
+                if(localStorage.count){
+                    localStorage.count++;
+                }else{
+                    localStorage.count=1;
+                }
+                document.getElementById("countBtn").innerHTML =localStorage.count;
+            }else{
+                document.getElementById("countBtn").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다."
+            }
+        }
+        
+    
+    </script>
+</body>
+</html>

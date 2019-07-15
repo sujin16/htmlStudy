@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body> 
+    <p id="support"></p>
+    <input id="local" type="text">
+    <button id="Save_localBtn" onclick="localCounter()">Save local Stage</button><br/>
+    <output id="localText"></output>
+    <button onclick="localReference()">Reference local</button><br/><br/>
+
+
+    <input id="session" type="text">
+    <button id="Save_sessionBtn" onclick="sessionCounter()">Save session Stage</button><br/>
+    <output id="sessionText"></output>
+    <button onclick="sessionReference()">Reference session</button><br/>
+
+
+    <script>
+        function localCounter(){
+            if(('localStorage' in window) &&(window['localStorage']!==null)){
+                 localStorage.setItem("text",document.getElementById("local").value);
+                                
+            }else{
+                document.getElementById("support").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다.";
+            }
+        }
+        function localReference(){
+            document.getElementById("localText").innerHTML =
+            localStorage.getItem("text");
+
+        }
+
+
+        function sessionCounter(){
+            if(('sessionStorage' in window) &&(window['sessionStorage']!==null)){
+                sessionStorage.setItem("text",document.getElementById("session").value);
+                                
+            }else{
+                document.getElementById("support").innerHTML ="브라우저가 웹 스토리지를 지원하지 않습니다.";
+            }
+        }
+        function sessionReference(){
+            document.getElementById("sessionText").innerHTML =
+            sessionStorage.getItem("text");
+
+        }
+
+        
+    
+    </script>
+    
+</body>
+</html>
